@@ -1,0 +1,25 @@
+create database bankingsystem;
+
+use bankingsystem;
+
+drop table if exists users;
+drop table if exists authorities;
+
+create table if not exists `users`(
+id int not null key auto_increment,
+username varchar(50) not null,
+password varchar(255) not null,
+enabled boolean not null
+);
+
+create table if not exists authorities(
+id int not null key auto_increment,
+username varchar(50) not null,
+authority varchar(50) not null,
+constraint fk_authorities_user foreign key(id) references users(id)
+);
+
+create unique index ix_auth_username on authorities (username, authority);
+
+insert ignore into `bankingsystem`.`users` values(NULL, 'happy', '12345', '1');
+insert ignore into `bankingsystem`.`authorities` values (NULL,'happy', 'write');
