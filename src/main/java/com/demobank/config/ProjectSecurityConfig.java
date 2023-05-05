@@ -21,7 +21,7 @@ public class ProjectSecurityConfig {
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests()
 //               visible apis with authentication. requestMatchers accepts any number of api patterns
-                .requestMatchers("/account-balance", "/loan-account", "/cards-accounts", "/my-account/**").authenticated()
+                .requestMatchers("/balance", "/loan", "/cards", "/my-account/**").authenticated()
                 .requestMatchers("/contact", "/notice-board").permitAll() //visible apis without authentication
                 //.anyRequest().denyAll() -->Will be use to test the security system in dev environments
                 .and().formLogin()
